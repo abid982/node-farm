@@ -4,6 +4,9 @@ const fs = require('fs');
 const http = require('http');
 const url = require('url');
 
+// 3rd PARTY MODULES
+const slugify = require('slugify');
+
 // OUR OWN MODULES
 // const x = require('./modules/replaceTemplate');
 const replaceTemplate = require('./modules/replaceTemplate');
@@ -125,6 +128,13 @@ console.log(data);
 // const dataObj = JSON.parse(data);
 const dataObj = JSON.parse(data);
 console.log(dataObj);
+
+console.log('Slugify:');
+console.log(slugify('Fresh Avocados', { lower: true }));
+
+// Create an array of all slugs
+const slugs = dataObj.map(el => slugify(el.productName, { lower: true }));
+console.log(slugs);
 
 // In order to build a server we have to do two things
 // 1. Create the server
